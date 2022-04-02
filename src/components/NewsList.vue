@@ -1,15 +1,49 @@
+<style scoped>
+.style{
+  color: ;
+}
+</style>
+
 <template>
     <ul class="news__list">
-        <li class="news__item">News item 1</li>
-        <li class="news__item">News item 2</li>
-        <li class="news__item">News item 3</li>
+       <li v-for="article in articles"
+class="news__item">
+
+<div class="style"> <img v-bind:src="article.urlToImage" /> <h4>{{ article.title }} </h4> {{ article.description }}  </div> 
+
+ </li>
+
     </ul>
 </template>
 
 <script>
 export default {
     data() {
-        return {};
+        return {
+            articles: []
+        };
     },
+
+    created() {
+        let self = this;
+        fetch('https://newsapi.org/v2/top-headlines?country=us',
+{
+    headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_NEWSAPI_TOKEN}`
+    }
+})
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            self.articles = data.articles;
+        });
+    }
+
+
+
 };
 </script>
+
+
