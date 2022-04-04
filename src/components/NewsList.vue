@@ -15,7 +15,7 @@
 
 
 
-       <li v-for="article in articles" class="news__item">
+      
 <div class="grid-container">       
 <div class="card" style="width: 18rem;" v-for:="article in articles">
         <img :src= article.urlToImage class="card-img-top" alt="...">
@@ -26,7 +26,7 @@
       
     </div>
 </div>
-</li>
+
 
 
 
