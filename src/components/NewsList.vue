@@ -1,17 +1,9 @@
-<style scoped>
-.style{
-  
-}
-</style>
+
+
 
 <template>
     <ul class="news__list">
-       <li v-for="article in articles" class="news__item">
-    <div class="style"> 
-        <img v-bind:src="article.urlToImage" /> <h4>{{ article.title }} </h4> {{ article.description }}
-    </div> 
 
-</li>
 <form  @submit.prevent="searchNews" class="d-flex flex-column justify-content-center">
     <div class="input-group mx-sm-3 mb-2">
         <label class="visually-hidden" for="search">Search</label>
@@ -20,6 +12,25 @@
     </div>
     <p>You are searching for {{ searchTerm }}</p>
 </form>
+
+
+
+       <li v-for="article in articles" class="news__item">
+<div class="grid-container">       
+<div class="card" style="width: 18rem;" v-for:="article in articles">
+        <img :src= article.urlToImage class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">{{ article.title }}</h5>
+        <p class="card-text">{{article.description}}</p>
+        </div>
+      
+    </div>
+</div>
+</li>
+
+
+
+
     </ul>
 
 </template>
@@ -57,3 +68,11 @@ self.searchTerm + '&language=en', {
 </script>
 
 
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  row-gap: 20px;
+}
+</style>
